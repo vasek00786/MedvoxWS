@@ -230,10 +230,10 @@ public class Sql_request {
 
     public  static  String SelectPatients(Integer bithdate) {
         String req = "select id, lastname, firstname, middlename,to_char(birthday,'dd.mm.yyyy') as birthday  " +
-                "from Patient " +
-                "where noactuality is null" +
-                "and deathdate is null " +
-                "and birthday ='"+bithdate+"'"; //19890801
+                " from Patient " +
+                " where (noactuality is null or noactuality ='0')" +
+                " and (deathdate is null or deathDate='0')" +
+                " and birthday =to_date('"+bithdate+"','yyyyMMdd')"; //19890801
         return req;
     }
 
